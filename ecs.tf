@@ -1,12 +1,13 @@
 resource "aws_ecs_cluster" "devops1" {
   name = "devops1-cluster"
+  tags = var.tags
 }
 
 resource "aws_ecs_task_definition" "td1" {
   family = "td1"
-  cpu = 128
+  cpu    = 128
   memory = 256
-// network_mode = "awsvpc"
+  // network_mode = "awsvpc"
   container_definitions = <<EOF
 [{
   "name": "td1",
@@ -24,14 +25,19 @@ EOF
 }
 
 resource "aws_ecs_service" "nginx" {
-  name = "nginx"
-  cluster = aws_ecs_cluster.devops1.id
-  desired_count = 1
+  name            = "nginx"
+  cluster         = aws_ecs_cluster.devops1.id
+  desired_count   = 1
   task_definition = aws_ecs_task_definition.td1.id
 
-//  network_configuration {
-//    subnets = [ module.subnet1.subnet_id, module.subnet2.subnet_id ]
-//    assign_public_ip = true
-//    security_groups = [ aws_security_group.main.id ]
-//  }
+  load_balancer {
+    container_name   = "td1"
+    container_port   = 8080
+    target_group_arn = aws_alb_target_group.ecs-target-group.id
+  }
+  //  network_configuration {
+  //    subnets = [ module.subnet1.subnet_id, module.subnet2.subnet_id ]
+  //    assign_public_ip = true
+  //    security_groups = [ aws_security_group.main.id ]
+  //  }
 }
