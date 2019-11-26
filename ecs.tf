@@ -17,8 +17,9 @@ resource "aws_ecs_task_definition" "td1" {
   "memoryReservation": 128,
   "essential": true,
   "portMappings": [{
+    "hostPort": 0,
     "containerPort": 8080,
-    "hostPort": 8080
+    "protocol": "tcp"
   }]
 }]
 EOF

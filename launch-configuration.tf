@@ -1,6 +1,6 @@
 resource "aws_launch_configuration" "ecs-launch-configuration" {
   name          = "dev1-ecs-launch-configuration"
-  image_id      = "ami-0c64dd618a49aeee8" //ami-0fbd313043845c4f2
+  image_id      = "ami-020c0a39d62d1ee78" //ami-0c64dd618a49aeee8
   instance_type = "t2.micro"
 
   security_groups             = [aws_security_group.main.id]
@@ -9,6 +9,17 @@ resource "aws_launch_configuration" "ecs-launch-configuration" {
                                   #!/bin/bash
                                   echo ECS_CLUSTER=${aws_ecs_cluster.devops1.name} >> /etc/ecs/ecs.config
                                   EOF
+
+//  user_data = <<EOF
+//#!/bin/bash
+//cat <<'EOF' >> /etc/ecs/ecs.config
+//ECS_CLUSTER=${aws_ecs_cluster.devops1.name}
+//ECS_ENABLE_TASK_IAM_ROLE=true
+//ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST=true
+//ECS_LOGFILE=/log/ecs-agent.log
+//ECS_AVAILABLE_LOGGING_DRIVERS=["json-file","awslogs"]
+//ECS_LOGLEVEL=info
+//EOF
 
   lifecycle {
     create_before_destroy = true
