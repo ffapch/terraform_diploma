@@ -11,17 +11,6 @@ resource "aws_launch_configuration" "ecs-launch-configuration" {
 echo ECS_CLUSTER=${aws_ecs_cluster.devops1.name} >> /etc/ecs/ecs.config
 EOF
 
-  //  user_data = <<EOF
-  //#!/bin/bash
-  //cat <<'EOF' >> /etc/ecs/ecs.config
-  //ECS_CLUSTER=${aws_ecs_cluster.devops1.name}
-  //ECS_ENABLE_TASK_IAM_ROLE=true
-  //ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST=true
-  //ECS_LOGFILE=/log/ecs-agent.log
-  //ECS_AVAILABLE_LOGGING_DRIVERS=["json-file","awslogs"]
-  //ECS_LOGLEVEL=info
-  //EOF
-
   lifecycle {
     create_before_destroy = true
   }

@@ -16,7 +16,7 @@ resource "aws_ecs_task_definition" "td1" {
   "memoryReservation": 128,
   "essential": true,
   "portMappings": [{
-    "hostPort": 0,
+    "hostPort": 8080,
     "containerPort": 8080,
     "protocol": "tcp"
   }]
@@ -29,8 +29,6 @@ resource "aws_ecs_service" "nginx" {
   cluster         = aws_ecs_cluster.devops1.id
   desired_count   = 1
   task_definition = aws_ecs_task_definition.td1.id
-
-  //iam_role = aws_iam_role.dev1-iam-role.id
 
   load_balancer {
     container_name   = "td1"
