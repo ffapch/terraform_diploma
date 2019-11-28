@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "td1" {
   "essential": true,
   "portMappings": [{
     "hostPort": 8080,
-    "containerPort": 8080,
+    "containerPort": 80,
     "protocol": "tcp"
   }]
 }]
@@ -27,12 +27,12 @@ EOF
 resource "aws_ecs_service" "nginx" {
   name            = "nginx"
   cluster         = aws_ecs_cluster.devops1.id
-  desired_count   = 1
+  desired_count   = 2
   task_definition = aws_ecs_task_definition.td1.id
 
   load_balancer {
     container_name   = "td1"
-    container_port   = 8080
+    container_port   = 80
     target_group_arn = aws_alb_target_group.ecs-target-group.id
   }
 }

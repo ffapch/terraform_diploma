@@ -23,14 +23,14 @@ resource "aws_alb_target_group" "ecs-target-group" {
   vpc_id   = aws_vpc.main.id
 
   health_check {
-    healthy_threshold   = "2"
-    unhealthy_threshold = "10"
+    healthy_threshold   = "3"
+    unhealthy_threshold = "5"
     interval            = "30"
     matcher             = "200"
     path                = "/"
     port                = "traffic-port"
     protocol            = "HTTP"
-    timeout             = "29"
+    timeout             = "10"
   }
 
   tags = var.tags
