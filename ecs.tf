@@ -36,7 +36,7 @@ resource "aws_ecs_task_definition" "dev1-app-td" {
   container_definitions = <<EOF
 [{
   "name": "${local.app_service_name}",
-  "image": "ffapch/webapp:1.0",
+  "image": "753788210905.dkr.ecr.us-east-2.amazonaws.com/dev1-repository:1.0",
   "cpu": 10,
   "memory": 256,
   "memoryReservation": 128,
