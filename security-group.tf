@@ -33,6 +33,13 @@ resource "aws_security_group" "main" {
     cidr_blocks = ["0.0.0.0/0"]
     description = "Allow ping"
   }
+  ingress {
+    from_port   = 5432
+    protocol    = "tcp"
+    to_port     = 5432
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow calls to postgres"
+  }
   egress {
     from_port   = 0
     protocol    = "-1"
