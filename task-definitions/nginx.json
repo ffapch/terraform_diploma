@@ -1,0 +1,13 @@
+[{
+  "name": "dev1-nginx",
+  "image": "nginx:latest",
+  "cpu": 10,
+  "memory": 256,
+  "memoryReservation": 128,
+  "essential": true,
+  "portMappings": [{
+    "hostPort": 8080,
+    "containerPort": 80,
+    "protocol": "tcp"
+    }]
+}]

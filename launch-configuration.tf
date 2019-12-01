@@ -1,5 +1,5 @@
-resource "aws_launch_configuration" "ecs-launch-configuration" {
-  name                        = "dev1-ecs-launch-configuration"
+resource "aws_launch_configuration" "launch-configuration" {
+  name                        = "dev1-launch-configuration"
   image_id                    = "ami-020c0a39d62d1ee78"
   instance_type               = "t2.micro"
   security_groups             = [aws_security_group.main.id]

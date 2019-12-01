@@ -1,0 +1,13 @@
+[{
+  "name": "dev1-app",
+  "image": "753788210905.dkr.ecr.us-east-2.amazonaws.com/dev1-repository:1.0",
+  "cpu": 10,
+  "memory": 256,
+  "memoryReservation": 128,
+  "essential": true,
+  "portMappings": [{
+      "hostPort": 80,
+      "containerPort": 80,
+      "protocol": "tcp"
+    }]
+}]

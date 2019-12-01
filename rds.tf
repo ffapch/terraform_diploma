@@ -1,4 +1,6 @@
 resource "aws_db_instance" "db-instance" {
+  identifier = "dev1db"
+  final_snapshot_identifier = "dev1db"
   name                   = "dev1db"
   instance_class         = "db.t2.micro"
   allocated_storage      = 20

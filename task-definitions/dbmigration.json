@@ -1,0 +1,17 @@
+[{
+  "name": "dev1-app",
+  "image": "753788210905.dkr.ecr.us-east-2.amazonaws.com/dev1-repository:1.0",
+  "cpu": 10,
+  "memory": 128,
+  "memoryReservation": 64,
+  "essential": true,
+  "portMappings": [{
+    "hostPort": 8081,
+    "containerPort": 8081,
+    "protocol": "tcp"
+  }],
+  "command": ["dbmigration.sh"],
+  "entryPoint": [
+    "/bin/sh"
+  ]
+}]
